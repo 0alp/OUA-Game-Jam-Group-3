@@ -24,6 +24,15 @@ public class Door : MonoBehaviour
 
     private void LevelTransition()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level2");
+        int nextSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 2;
+
+        if (nextSceneIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.LogError("There is no next scene in the build settings.");
+        }
     }
 }
